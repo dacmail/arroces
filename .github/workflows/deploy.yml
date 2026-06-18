@@ -1,0 +1,56 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-arroces
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    name: Build & deploy a arroces.soydac.com
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      # Despliegue solo en push a main (no en PRs).
+      - name: Deploy (rsync sobre SSH)
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          PORT="${SSH_PORT:-22}"
+          ssh-keyscan -p "$PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+          # Sube el contenido de dist/ al document root del subdominio.
+          # --delete limpia ficheros antiguos; se preserva .well-known (Let's Encrypt).
+          rsync -az --delete --exclude='.well-known' \
+            -e "ssh -i ~/.ssh/id_deploy -p $PORT -o StrictHostKeyChecking=accept-new" \
+            dist/ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"

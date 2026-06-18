@@ -1,0 +1,20 @@
+{
+  "name": "calculadora-paella-valenciana",
+  "version": "1.0.0",
+  "description": "Calculadora de paella valenciana: ingredientes, proporción arroz/caldo y grosor de capa según comensales, diámetro, tipo de arroz y fuego. PWA instalable y offline.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test test/*.test.js",
+    "gen-icons": "node scripts/gen-icons.mjs"
+  },
+  "keywords": ["paella", "valenciana", "calculadora", "arroz", "pwa"],
+  "license": "MIT",
+  "devDependencies": {
+    "sharp": "^0.33.5",
+    "vite": "^6.0.7",
+    "vite-plugin-pwa": "^0.21.1"
+  }
+}

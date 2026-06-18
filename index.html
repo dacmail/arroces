@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0"
+    />
+    <title>Calculadora de Paella Valenciana</title>
+    <meta
+      name="description"
+      content="Calcula los ingredientes, la proporción arroz/caldo y el grosor de la capa de tu paella valenciana según comensales, diámetro, tipo de arroz y fuego."
+    />
+    <meta name="theme-color" content="#e8961e" />
+
+    <!-- iOS / añadir a pantalla de inicio -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Paella" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app__header">
+        <h1 class="app__title">
+          <span class="app__title-icon" aria-hidden="true">🥘</span>
+          Calculadora de Paella
+        </h1>
+        <p class="app__subtitle">Valenciana · ingredientes y proporción arroz/caldo</p>
+        <button id="install-btn" class="install-btn" type="button" hidden>
+          ⤓ Instalar app
+        </button>
+      </header>
+
+      <main class="app__main">
+        <!-- Controles -->
+        <section class="card controls" aria-label="Configuración">
+          <div class="field">
+            <label class="field__label" for="comensales-value">Comensales</label>
+            <div class="stepper" role="group" aria-label="Número de comensales">
+              <button class="stepper__btn" type="button" data-step="-1" aria-label="Menos comensales">−</button>
+              <output class="stepper__value" id="comensales-value">4</output>
+              <button class="stepper__btn" type="button" data-step="1" aria-label="Más comensales">+</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="field__label" id="diam-label">Diámetro de la paella</span>
+            <div class="chips chips--scroll" id="diametro-chips" role="radiogroup" aria-labelledby="diam-label"></div>
+          </div>
+
+          <div class="field">
+            <span class="field__label" id="arroz-label">Tipo de arroz</span>
+            <div class="segmented" id="arroz-seg" role="radiogroup" aria-labelledby="arroz-label"></div>
+          </div>
+
+          <div class="field">
+            <span class="field__label" id="fuego-label">Tipo de fuego</span>
+            <div class="segmented" id="fuego-seg" role="radiogroup" aria-labelledby="fuego-label"></div>
+          </div>
+        </section>
+
+        <!-- Indicador de capa -->
+        <section class="card capa" aria-label="Grosor de la capa de arroz">
+          <div class="capa__head">
+            <h2 class="card__title">Capa de arroz</h2>
+            <span class="capa__badge" id="capa-badge">—</span>
+          </div>
+          <div class="gauge" id="capa-gauge">
+            <div class="gauge__track">
+              <span class="gauge__zone gauge__zone--bad"></span>
+              <span class="gauge__zone gauge__zone--warn"></span>
+              <span class="gauge__zone gauge__zone--good"></span>
+              <span class="gauge__zone gauge__zone--warn"></span>
+              <span class="gauge__zone gauge__zone--bad"></span>
+              <span class="gauge__marker" id="capa-marker"></span>
+            </div>
+            <div class="gauge__labels">
+              <span>Insuficiente</span><span>Fina</span><span>Media</span><span>Gruesa</span><span>Excesiva</span>
+            </div>
+          </div>
+          <p class="capa__msg" id="capa-msg"></p>
+          <div class="chips suggestions" id="suggestions"></div>
+        </section>
+
+        <!-- Agua / caldo -->
+        <section class="card water" aria-label="Agua y caldo">
+          <h2 class="card__title">Agua y proporción</h2>
+          <div class="ratio" id="ratio-block">
+            <div class="ratio__big" id="ratio-main">—</div>
+            <div class="ratio__sub" id="ratio-sub"></div>
+          </div>
+          <div class="water__grid">
+            <div class="water__item water__item--primary">
+              <span class="water__label">Caldo (arroz)</span>
+              <span class="water__value" id="q1-value">—</span>
+              <span class="water__range" id="q1-range"></span>
+            </div>
+            <div class="water__item">
+              <span class="water__label">Agua sofrito/carne</span>
+              <span class="water__value" id="q2-value">—</span>
+            </div>
+            <div class="water__item">
+              <span class="water__label">Agua total</span>
+              <span class="water__value" id="qt-value">—</span>
+            </div>
+          </div>
+          <p class="water__note" id="water-note"></p>
+        </section>
+
+        <!-- Ingredientes -->
+        <section class="card ingredients" aria-label="Ingredientes">
+          <div class="ingredients__head">
+            <h2 class="card__title">Ingredientes</h2>
+            <button id="share-btn" class="ghost-btn" type="button">Compartir</button>
+          </div>
+          <ul class="ing-list" id="ing-list"></ul>
+        </section>
+
+        <!-- Avanzado -->
+        <details class="card details">
+          <summary class="details__summary">Ajuste manual de arroz (avanzado)</summary>
+          <div class="details__body">
+            <p class="details__hint">
+              Fija los gramos de arroz a mano para explorar cómo cambia la capa y el caldo.
+              El resto de ingredientes se mantienen por comensales.
+            </p>
+            <label class="switch">
+              <input type="checkbox" id="manual-toggle" />
+              <span>Activar ajuste manual</span>
+            </label>
+            <div class="manual" id="manual-block" hidden>
+              <input type="range" id="manual-range" min="100" max="2500" step="50" value="400" />
+              <output class="manual__value" id="manual-value">400 g</output>
+            </div>
+          </div>
+        </details>
+
+        <!-- Consejos -->
+        <details class="card details" id="tips">
+          <summary class="details__summary">Consejos según el fuego</summary>
+          <div class="details__body" id="tips-body"></div>
+        </details>
+      </main>
+
+      <footer class="app__footer">
+        <p>
+          Datos basados en la calculadora de
+          <a href="https://www.arrocesconestilo.com" target="_blank" rel="noopener noreferrer"
+            >arrocesconestilo.com</a
+          >
+          y la tabla de @arrocesconestilo. Cantidades orientativas.
+        </p>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
