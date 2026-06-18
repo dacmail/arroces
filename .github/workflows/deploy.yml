@@ -51,6 +51,6 @@ jobs:
           ssh-keyscan -p "$PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
           # Sube el contenido de dist/ al document root del subdominio.
           # --delete limpia ficheros antiguos; se preserva .well-known (Let's Encrypt).
-          rsync -az --delete --exclude='.well-known' \
+          rsync -az --delete --exclude='.well-known' --chown=soydac:psacln \
             -e "ssh -i ~/.ssh/id_deploy -p $PORT -o StrictHostKeyChecking=accept-new" \
             dist/ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
