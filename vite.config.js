@@ -24,10 +24,10 @@ export default defineConfig({
         theme_color: '#e8961e',
         categories: ['food', 'lifestyle', 'utilities'],
         icons: [
-          { src: 'icons/pwa-192x192.png', sizes: '192x192', type: 'image/png' },
-          { src: 'icons/pwa-512x512.png', sizes: '512x512', type: 'image/png' },
+          { src: 'app-icons/pwa-192x192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'app-icons/pwa-512x512.png', sizes: '512x512', type: 'image/png' },
           {
-            src: 'icons/maskable-512x512.png',
+            src: 'app-icons/maskable-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable',

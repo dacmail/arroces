@@ -12,7 +12,9 @@ import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const pub = join(root, 'public');
-const iconsDir = join(pub, 'icons');
+// "app-icons" (no "icons"): Apache reserva /icons/ con un Alias global
+// (fancy-indexing), que intercepta esa ruta antes de llegar al docroot.
+const iconsDir = join(pub, 'app-icons');
 
 // Dibuja la paellera (asas + borde + arroz + ingredientes) centrada en (cx,cy)
 // con radio r. Devuelve solo el contenido <g>, para poder reutilizarlo tanto
