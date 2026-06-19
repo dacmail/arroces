@@ -1,37 +1,75 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <defs>
-    <radialGradient id="rice" cx="50%" cy="42%" r="62%">
-      <stop offset="0%" stop-color="#ffd874"/>
-      <stop offset="70%" stop-color="#f0a838"/>
-      <stop offset="100%" stop-color="#e07d1c"/>
+  <defs><radialGradient id="rim-27.52" cx="40%" cy="32%" r="75%">
+      <stop offset="0%" stop-color="#8a8a8a"/>
+      <stop offset="55%" stop-color="#4a4a4a"/>
+      <stop offset="100%" stop-color="#1f1f1f"/>
     </radialGradient>
-  </defs>
+    <radialGradient id="rice-27.52" cx="48%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#ffda6e"/>
+      <stop offset="65%" stop-color="#f3a82c"/>
+      <stop offset="100%" stop-color="#d6831a"/>
+    </radialGradient>
+    <radialGradient id="speckle-27.52" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#a85d0a" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#7a3d00" stop-opacity="0.32"/>
+    </radialGradient></defs>
   <rect width="64" height="64" rx="14.08" fill="#fff7e6"/>
+  
   <!-- asas -->
-  <circle cx="-1.6640000000000001" cy="32" r="8.32" fill="none" stroke="#3a2e22" stroke-width="2.24"/>
-  <circle cx="65.664" cy="32" r="8.32" fill="none" stroke="#3a2e22" stroke-width="2.24"/>
-  <!-- borde de la paella -->
-  <circle cx="32" cy="32" r="32" fill="#2f2a24"/>
-  <circle cx="32" cy="32" r="28.8" fill="url(#rice)"/>
-  <!-- tiras de pimiento rojo -->
-  <g fill="#c4452a">
-    <rect x="14.399999999999999" y="28.8" width="16" height="3.84" rx="1.92" transform="rotate(-18 32 32)"/>
-    <rect x="33.92" y="18.560000000000002" width="16" height="3.84" rx="1.92" transform="rotate(22 32 32)"/>
-  </g>
-  <!-- gajos de limón -->
-  <g fill="#ffe066" stroke="#e6b800" stroke-width="0.64">
-    <circle cx="45.44" cy="45.44" r="5.12"/>
-    <circle cx="17.28" cy="42.88" r="4.16"/>
-  </g>
-  <!-- judías verdes -->
-  <g stroke="#3f8f3a" stroke-width="1.92" stroke-linecap="round" fill="none">
-    <path d="M 25.6 48 q 5.76 -3.84 11.52 0"/>
-    <path d="M 32.64 35.84 q 5.76 -3.84 11.52 0"/>
-  </g>
-  <!-- granos de azafrán -->
-  <g fill="#b1310f">
-    <circle cx="28.8" cy="25.6" r="0.96"/>
-    <circle cx="37.76" cy="33.28" r="0.96"/>
-    <circle cx="21.759999999999998" cy="32.64" r="0.96"/>
-  </g>
+  <circle cx="3.379200000000001" cy="32" r="4.5408" fill="none" stroke="#1c1c1c" stroke-width="2.7520000000000002"/>
+  <circle cx="60.6208" cy="32" r="4.5408" fill="none" stroke="#1c1c1c" stroke-width="2.7520000000000002"/>
+  <!-- borde metálico de la paellera -->
+  <circle cx="32" cy="32" r="27.52" fill="url(#rim-27.52)"/>
+  <circle cx="32" cy="32" r="25.593600000000002" fill="none" stroke="#777" stroke-width="1.2384" opacity="0.6"/>
+  <!-- arroz -->
+  <circle cx="32" cy="32" r="23.667199999999998" fill="url(#rice-27.52)"/>
+  <circle cx="32" cy="32" r="23.667199999999998" fill="url(#speckle-27.52)"/>
+  <!-- ingredientes -->
+  <g transform="translate(41.906128410401195 43.805664121795196) rotate(230)">
+      <path d="M -1.3760000000000001 -4.4032 q 9.3568 -0.5504 9.9072 4.9536 q 0.5504 6.0544 -4.4032 7.1552 q -6.0544 1.3760000000000001 -7.7056000000000004 -3.8528000000000002 q -1.9264000000000001 -3.5776 2.2016 -6.6048 Z"
+        fill="#d98a3d" stroke="#a3601f" stroke-width="0.4128"/>
+      <circle cx="-4.4032" cy="1.9264000000000001" r="1.3760000000000001" fill="#f3d8b0"/>
+    </g>
+  <g transform="translate(22.093871589598802 20.194335878204807) rotate(410)">
+      <path d="M -1.3760000000000001 -4.4032 q 9.3568 -0.5504 9.9072 4.9536 q 0.5504 6.0544 -4.4032 7.1552 q -6.0544 1.3760000000000001 -7.7056000000000004 -3.8528000000000002 q -1.9264000000000001 -3.5776 2.2016 -6.6048 Z"
+        fill="#d98a3d" stroke="#a3601f" stroke-width="0.4128"/>
+      <circle cx="-4.4032" cy="1.9264000000000001" r="1.3760000000000001" fill="#f3d8b0"/>
+    </g>
+  <rect x="40.831676094106086" y="26.772887932116035" width="12.1088" height="2.4768"
+      rx="1.2384" fill="#5fa648" stroke="#3f7a30" stroke-width="0.33024"
+      transform="rotate(75 46.88607609410609 28.011287932116034)"/>
+  <rect x="24.60242541736729" y="46.11415573123151" width="12.1088" height="2.4768"
+      rx="1.2384" fill="#5fa648" stroke="#3f7a30" stroke-width="0.33024"
+      transform="rotate(185 30.65682541736729 47.35255573123151)"/>
+  <rect x="11.059523905893911" y="34.750312067883975" width="12.1088" height="2.4768"
+      rx="1.2384" fill="#5fa648" stroke="#3f7a30" stroke-width="0.33024"
+      transform="rotate(255 17.113923905893913 35.988712067883974)"/>
+  <rect x="28.621726795660592" y="15.584530756778255" width="12.1088" height="2.4768"
+      rx="1.2384" fill="#5fa648" stroke="#3f7a30" stroke-width="0.33024"
+      transform="rotate(370 34.67612679566059 16.822930756778256)"/>
+  <g>
+      <ellipse cx="44.45434018901199" cy="36.53300911622567" rx="2.3392" ry="1.7888" fill="#f5ecd8" stroke="#c9b98e" stroke-width="0.2752"
+        transform="rotate(20 44.45434018901199 36.53300911622567)"/>
+      <ellipse cx="44.04154018901199" cy="36.53300911622567" rx="0.49535999999999997" ry="0.8256" fill="#7a5a2a"
+        transform="rotate(20 44.45434018901199 36.53300911622567)"/>
+    </g>
+  <g>
+      <ellipse cx="23.480729567054972" cy="42.15287114474387" rx="2.3392" ry="1.7888" fill="#f5ecd8" stroke="#c9b98e" stroke-width="0.2752"
+        transform="rotate(130 23.480729567054972 42.15287114474387)"/>
+      <ellipse cx="23.06792956705497" cy="42.15287114474387" rx="0.49535999999999997" ry="0.8256" fill="#7a5a2a"
+        transform="rotate(130 23.480729567054972 42.15287114474387)"/>
+    </g>
+  <g>
+      <ellipse cx="19.545659810988017" cy="27.46699088377433" rx="2.3392" ry="1.7888" fill="#f5ecd8" stroke="#c9b98e" stroke-width="0.2752"
+        transform="rotate(200 19.545659810988017 27.46699088377433)"/>
+      <ellipse cx="19.132859810988016" cy="27.46699088377433" rx="0.49535999999999997" ry="0.8256" fill="#7a5a2a"
+        transform="rotate(200 19.545659810988017 27.46699088377433)"/>
+    </g>
+  <g>
+      <ellipse cx="40.51927043294503" cy="21.84712885525613" rx="2.3392" ry="1.7888" fill="#f5ecd8" stroke="#c9b98e" stroke-width="0.2752"
+        transform="rotate(310 40.51927043294503 21.84712885525613)"/>
+      <ellipse cx="40.10647043294503" cy="21.84712885525613" rx="0.49535999999999997" ry="0.8256" fill="#7a5a2a"
+        transform="rotate(310 40.51927043294503 21.84712885525613)"/>
+    </g>
+  
 </svg>
