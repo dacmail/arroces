@@ -76,7 +76,7 @@ Flujo: `push a main` → [.github/workflows/deploy.yml](.github/workflows/deploy
 
    | Secret | Valor |
    |---|---|
-   | `SSH_HOST` | IP/host del VPS (p. ej. `213.165.74.25`) |
+   | `SSH_HOST` | IP/host del VPS |
    | `SSH_USER` | usuario SSH del VPS |
    | `SSH_KEY` | clave **privada** SSH con acceso al VPS |
    | `SSH_PORT` | puerto SSH (si no es 22) |
@@ -85,7 +85,7 @@ Flujo: `push a main` → [.github/workflows/deploy.yml](.github/workflows/deploy
    Por línea de comandos:
 
    ```bash
-   gh secret set SSH_HOST   --repo dacmail/arroces --body "213.165.74.25"
+   gh secret set SSH_HOST   --repo dacmail/arroces --body "<ip-o-host-del-vps>"
    gh secret set SSH_USER   --repo dacmail/arroces --body "<usuario>"
    gh secret set SSH_PORT   --repo dacmail/arroces --body "22"
    gh secret set DEPLOY_PATH --repo dacmail/arroces --body "/var/www/vhosts/soydac.com/arroces.soydac.com"
