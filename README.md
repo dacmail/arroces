@@ -37,6 +37,9 @@ npm run preview     # sirve el build de producción
 - `src/main.js` — UI, estado (localStorage) y render.
 - `src/pwa.js` — service worker e instalación.
 - `src/styles.css` — estilos mobile-first.
+- `public/app-icons/` — iconos PWA. Se llama `app-icons` (no `icons`) porque Apache
+  reserva `/icons/` con un `Alias` global (fancy-indexing) que intercepta esa ruta
+  antes de llegar al docroot del subdominio.
 
 ### Cómo se combinan las dos fuentes
 
@@ -60,8 +63,10 @@ Flujo: `push a main` → [.github/workflows/deploy.yml](.github/workflows/deploy
 ### Puesta en marcha (una sola vez)
 
 1. **Subdominio en Plesk**: *Sitios web y dominios* → *Añadir subdominio* → nombre
-   `arroces`, dominio padre `soydac.com`. Anota su document root (típicamente
-   `/var/www/vhosts/soydac.com/arroces.soydac.com/httpdocs`).
+   `arroces`, dominio padre `soydac.com`. Anota su document root real comprobando
+   `DocumentRoot` en `/var/www/vhosts/system/<subdominio>/conf/httpd.conf` del VPS:
+   en este subdominio es `/var/www/vhosts/soydac.com/arroces.soydac.com` (**sin**
+   `/httpdocs`, a diferencia de otros dominios de Plesk).
 2. **DNS**: asegúrate de que `arroces.soydac.com` resuelve al VPS (si IONOS gestiona
    el DNS, Plesk suele crear el registro automáticamente).
 3. **SSL**: en el subdominio → *Certificados SSL/TLS* → activa **Let's Encrypt** con
@@ -75,7 +80,7 @@ Flujo: `push a main` → [.github/workflows/deploy.yml](.github/workflows/deploy
    | `SSH_USER` | usuario SSH del VPS |
    | `SSH_KEY` | clave **privada** SSH con acceso al VPS |
    | `SSH_PORT` | puerto SSH (si no es 22) |
-   | `DEPLOY_PATH` | document root del subdominio (el `httpdocs` del paso 1) |
+   | `DEPLOY_PATH` | document root del subdominio (ver paso 1; **verifica** que coincide con el `DocumentRoot` real de Apache, no asumas `httpdocs`) |
 
    Por línea de comandos:
 
@@ -83,7 +88,7 @@ Flujo: `push a main` → [.github/workflows/deploy.yml](.github/workflows/deploy
    gh secret set SSH_HOST   --repo dacmail/arroces --body "213.165.74.25"
    gh secret set SSH_USER   --repo dacmail/arroces --body "<usuario>"
    gh secret set SSH_PORT   --repo dacmail/arroces --body "22"
-   gh secret set DEPLOY_PATH --repo dacmail/arroces --body "/var/www/vhosts/soydac.com/arroces.soydac.com/httpdocs"
+   gh secret set DEPLOY_PATH --repo dacmail/arroces --body "/var/www/vhosts/soydac.com/arroces.soydac.com"
    gh secret set SSH_KEY    --repo dacmail/arroces < ~/.ssh/id_vps   # tu clave privada
    ```
 
